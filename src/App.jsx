@@ -22,9 +22,6 @@ function App() {
   fetchElectronics();
 }, []); // Dependencia vacía para ejecutarlo solo al montar el componente
 
-    fetchElectronics();
-  }, []); // Dependencia vacía para ejecutarlo solo al montar el componente
-
   function fetchProducts() {
     const n = parseInt(inputRef.current.value);
   
