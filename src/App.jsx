@@ -7,16 +7,20 @@ function App() {
   const [products, setProducts] = useState([]);
   const [allElectronics, setAllElectronics] = useState([]); 
 
-  useEffect(() => {
-    const fetchElectronics = async () => {
-      try {
-        const { data } = await axios.get("https://fakestoreapi.com/products");
-        const electronics = data.filter((product) => product.category === "electronics");
+ useEffect(() => {
+  const fetchElectronics = () => {
+    axios.get("https://fakestoreapi.com/products")
+      .then((response) => {
+        const electronics = response.data.filter((product) => product.category === "electronics");
         setAllElectronics(electronics);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error("Error al cargar los productos:", error);
-      }
-    };
+      });
+  };
+
+  fetchElectronics();
+}, []); // Dependencia vacía para ejecutarlo solo al montar el componente
 
     fetchElectronics();
   }, []); // Dependencia vacía para ejecutarlo solo al montar el componente
